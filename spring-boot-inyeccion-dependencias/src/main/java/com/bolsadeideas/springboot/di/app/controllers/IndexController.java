@@ -1,6 +1,6 @@
 package com.bolsadeideas.springboot.di.app.controllers;
 
-import com.bolsadeideas.springboot.di.app.services.MiServicio;
+import com.bolsadeideas.springboot.di.app.services.IServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @Autowired
-    private MiServicio servicio;
-    
+    private IServicio servicio;
+
     @GetMapping({"/index", "/", ""})
     public String index(Model model){
         model.addAttribute("titulo", "Probando los servicios sin inyección de dependencias");
