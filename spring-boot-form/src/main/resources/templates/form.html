@@ -12,6 +12,9 @@
                     <div>
                         <input name="username" id="username" type="text">
                     </div>
+                    <div th:if="${error != null && error.containsKey('username')}">
+
+                    </div>
                 </div>
                 <div>
                     <label for="password">Password: </label>
