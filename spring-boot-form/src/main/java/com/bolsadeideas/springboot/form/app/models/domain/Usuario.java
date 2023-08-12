@@ -6,10 +6,10 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Usuario {
-    @Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+    //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
     private String identificador;
 
-    @NotEmpty
+    //@NotEmpty
     private String nombre;
     @NotEmpty
     private String apellido;
