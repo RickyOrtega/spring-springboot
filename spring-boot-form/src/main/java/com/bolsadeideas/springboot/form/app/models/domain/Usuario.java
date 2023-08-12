@@ -3,7 +3,12 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import jakarta.validation.constraints.NotEmpty;
 
 public class Usuario {
+    private String identificador;
 
+    @NotEmpty
+    private String nombre;
+    @NotEmpty
+    private String apellido;
     @NotEmpty
     private String username;
     @NotEmpty
@@ -42,5 +47,29 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 }
