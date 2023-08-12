@@ -1,19 +1,23 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class Usuario {
     private String identificador;
 
-    @NotEmpty
+    @NotEmpty(message = "El nombre no puede ser vacío")
     private String nombre;
-    @NotEmpty
+    @NotEmpty(message = "El apellido no puede ser vacío")
     private String apellido;
-    @NotEmpty
+    @NotEmpty(message = "El nombre de usuario no puede ser vacío")
+    @Size(min = 3, max = 8, message = "El nombre de usuario debe tener una extensión de entre 3 y 8 caracteres")
     private String username;
-    @NotEmpty
+    @NotEmpty (message = "La contraseña no puede ser vacía")
     private String password;
-    @NotEmpty
+    @NotEmpty(message = "El email no puede ser vacío")
+    @Email(message = "Digite una dirección de correo válida")
     private String email;
 
     public Usuario() {
