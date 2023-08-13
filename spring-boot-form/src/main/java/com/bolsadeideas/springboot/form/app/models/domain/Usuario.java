@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
+import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import jakarta.validation.constraints.*;
 
 public class Usuario {
@@ -8,7 +9,7 @@ public class Usuario {
 
     //@NotEmpty
     private String nombre;
-    @NotEmpty
+    @IdentificadorRegex
     private String apellido;
     @NotBlank
     @Size(min = 3, max = 8)
