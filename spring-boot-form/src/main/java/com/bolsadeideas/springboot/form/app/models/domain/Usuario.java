@@ -1,15 +1,19 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
+import com.bolsadeideas.springboot.form.app.validation.Requerido;
 import jakarta.validation.constraints.*;
 
 public class Usuario {
     //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
+
+    @IdentificadorRegex
     private String identificador;
 
     //@NotEmpty
     private String nombre;
-    @IdentificadorRegex
+
+    @Requerido
     private String apellido;
     @NotBlank
     @Size(min = 3, max = 8)
