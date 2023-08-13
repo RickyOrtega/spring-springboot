@@ -1,9 +1,6 @@
 package com.bolsadeideas.springboot.form.app.models.domain;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class Usuario {
     //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
@@ -13,7 +10,7 @@ public class Usuario {
     private String nombre;
     @NotEmpty
     private String apellido;
-    @NotEmpty
+    @NotBlank
     @Size(min = 3, max = 8)
     private String username;
     @NotEmpty
