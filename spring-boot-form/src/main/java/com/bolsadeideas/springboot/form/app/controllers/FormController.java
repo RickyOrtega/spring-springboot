@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
+import com.bolsadeideas.springboot.form.app.editors.NombreMayusculaEditor;
 import com.bolsadeideas.springboot.form.app.models.domain.Usuario;
 import com.bolsadeideas.springboot.form.app.validation.UsuarioValidador;
 import jakarta.validation.Valid;
@@ -29,6 +30,8 @@ public class FormController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(java.util.Date.class,"fechaNacimiento", new CustomDateEditor(dateFormat, true));
+        binder.registerCustomEditor(String.class, "nombre",new NombreMayusculaEditor());
+        binder.registerCustomEditor(String.class, "apellido",new NombreMayusculaEditor());
     }
 
     @GetMapping("/form")
