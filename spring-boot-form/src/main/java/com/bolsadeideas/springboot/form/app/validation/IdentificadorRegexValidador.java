@@ -9,7 +9,6 @@ public class IdentificadorRegexValidador implements ConstraintValidator<Identifi
     public boolean isValid(String value, ConstraintValidatorContext context) {
 
         if(value.matches("[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")){
-            System.out.println("Sí se cumplió");
             return true;
         }
         return false;

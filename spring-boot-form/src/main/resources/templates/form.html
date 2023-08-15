@@ -8,6 +8,16 @@
         <h3 th:text="${titulo}"></h3>
         <form th:action="@{/form}" th:object="${usuario}" method="POST">
             <div>
+                <label for="pais">País: </label>
+                <div>
+                    <select id="pais" th:field="*{pais}">
+                        <option value="">-- Seleccionar --</option>
+                        <option th:each="pais: ${paisesMap.entrySet()}" th:text="${pais.value}" th:value="${pais.key}"></option>
+                    </select>
+                </div>
+                <div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+            </div>
+            <div>
                 <label for="identificador">Identificador: </label>
                 <div>
                     <input id="identificador" type="text" th:field="*{identificador}">

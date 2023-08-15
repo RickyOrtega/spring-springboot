@@ -10,13 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @SessionAttributes("usuario")
 public class FormController {
@@ -44,6 +46,24 @@ public class FormController {
         model.addAttribute("usuario", usuario);
         return "form";
     }
+
+    @ModelAttribute("paises")
+    public List<String> paises(){
+        return Arrays.asList("España", "México", "Chile", "Argentina", "Perú", "Colombia", "Venezuela");
+    }
+
+    @ModelAttribute("paisesMap")
+    public Map<String, String> paisesMap(){
+        Map<String, String> paises = new HashMap<>();
+        paises.put("ES", "España");
+        paises.put("MX", "México");
+        paises.put("CL", "Chile");
+        paises.put("AR", "Argentina");
+        paises.put("PE", "Perú");
+        paises.put("CO", "Colombia");
+        paises.put("VE", "Venezuela");
+        return paises;
+   }
 
     @PostMapping("/form")
     public String procesar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus sessionStatus) {
