@@ -3,6 +3,9 @@ package com.bolsadeideas.springboot.form.app.models.domain;
 import com.bolsadeideas.springboot.form.app.validation.IdentificadorRegex;
 import com.bolsadeideas.springboot.form.app.validation.Requerido;
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 public class Usuario {
     //@Pattern(regexp = "[0-9]{2}[.][\\d]{3}[.][\\d]{3}[-][A-Z]{1}")
@@ -23,6 +26,14 @@ public class Usuario {
     @NotEmpty
     @Email(message = "")
     private String email;
+    @NotNull
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private Date fechaNacimiento;
 
     public Usuario() {
     }
@@ -79,5 +90,21 @@ public class Usuario {
 
     public void setIdentificador(String identificador) {
         this.identificador = identificador;
+    }
+
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 }
