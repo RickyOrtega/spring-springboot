@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +20,7 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         logger.info("TiempoTranscurridoInterceptor: preHandle() entrando ... ");
+        logger.info("Interceptando: ".concat((String) handler));
         long tiempoInicio = System.currentTimeMillis();
         request.setAttribute("tiempoInicio", tiempoInicio);
 
@@ -34,8 +36,7 @@ public class TiempoTranscurridoInterceptor implements HandlerInterceptor {
         long tiempoInicio = (Long) request.getAttribute("tiempoInicio");
         long tiempoTranscurrido = tiempoFin - tiempoInicio;
 
-        if (modelAndView != null) {
-
+        if (modelAndView != null && handler instanceof HandlerMethod) {
             modelAndView.addObject("tiempoTranscurrido", tiempoTranscurrido);
         }
         logger.info("Tiempo Transcurrido: ".concat(String.valueOf(tiempoTranscurrido)).concat(" milisegundos"));
