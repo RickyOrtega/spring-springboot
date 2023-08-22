@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.tymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.tymeleaf.org ">
+    <body>
+        <section th:fragment="interceptor">
+            <div class="alert alert-success" th:if="${tiempoTranscurrido} != null">
+                <span th:text=" 'Tiempo transcurrido: ' + ${tiempoTranscurrido} + ' ms.'"></span>
+            </div>
+        </section>
+    </body>
+</html>
