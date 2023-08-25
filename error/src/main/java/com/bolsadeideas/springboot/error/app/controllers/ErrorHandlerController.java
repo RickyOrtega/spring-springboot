@@ -18,4 +18,13 @@ public class ErrorHandlerController {
         model.addAttribute("timestamp", new Date());
         return "error/aritmetica";
     }
+
+    @ExceptionHandler(NumberFormatException.class)
+    public String formateoNumeroError(Exception ex, Model model){
+        model.addAttribute("error", "Error formateando el número. No se digitó un número válido");
+        model.addAttribute("message", ex.getMessage());
+        model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        model.addAttribute("timestamp", new Date());
+        return "error/numero-formato";
+    }
 }
