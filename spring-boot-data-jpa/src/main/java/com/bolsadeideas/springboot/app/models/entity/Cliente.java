@@ -1,6 +1,11 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,12 +18,18 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "No puede estar vacío")
     private String nombre;
+    @NotEmpty(message = "No puede estar vacío")
     private String apellido;
+    @NotEmpty(message = "No puede estar vacío")
+    @Email(message = "Introduzca un formato de correo electrónico válido")
     private String email;
 
+    @NotNull(message = "No puede estar vacío")
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
 
     @Serial
@@ -27,10 +38,10 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    @PrePersist
+/*    @PrePersist
     public void prePersist(){
         createdAt = new Date();
-    }
+    }*/
 
     public Long getId() {
         return id;

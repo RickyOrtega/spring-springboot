@@ -2,10 +2,12 @@ package com.bolsadeideas.springboot.app.controllers;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import com.bolsadeideas.springboot.app.models.entity.dao.IClienteDao;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -34,7 +36,12 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/form")
-    public String crear(Cliente cliente){
+    public String crear(@Valid Cliente cliente, BindingResult result, Model model){
+
+        if(result.hasErrors()){
+            model.addAttribute("titulo", "Formulario de cliente");
+            return "form";
+        }
 
         clienteDao.save(cliente);
 
