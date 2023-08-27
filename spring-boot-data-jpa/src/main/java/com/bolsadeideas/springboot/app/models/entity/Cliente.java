@@ -18,15 +18,15 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "No puede estar vacío")
+    @NotEmpty
     private String nombre;
-    @NotEmpty(message = "No puede estar vacío")
+    @NotEmpty
     private String apellido;
-    @NotEmpty(message = "No puede estar vacío")
-    @Email(message = "Introduzca un formato de correo electrónico válido")
+    @NotEmpty
+    @Email
     private String email;
 
-    @NotNull(message = "No puede estar vacío")
+    @NotNull
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
