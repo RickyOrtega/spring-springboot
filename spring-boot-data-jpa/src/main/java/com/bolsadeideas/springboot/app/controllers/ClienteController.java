@@ -29,6 +29,8 @@ public class ClienteController {
     public String listar(Model model){
         model.addAttribute("titulo", "Listado de clientes");
         model.addAttribute("clientes", clienteDao.findAll());
+        model.addAttribute("size", clienteDao.findAll().size());
+
         return "listar";
     }
 
