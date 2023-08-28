@@ -1,14 +1,12 @@
 package com.bolsadeideas.springboot.app.controllers;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
-import com.bolsadeideas.springboot.app.models.entity.dao.IClienteDao;
+import com.bolsadeideas.springboot.app.models.services.IClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,14 +20,14 @@ import java.util.Map;
 public class ClienteController {
 
     @Autowired
-    @Qualifier("clienteDaoJPA")//En este ejemplo no es absolutamente necesario hacerlo así, pero sí se recomienda para brindarle escabilidad a la app
-    private IClienteDao clienteDao;
+/*    @Qualifier("clienteDaoJPA")//En este ejemplo no es absolutamente necesario hacerlo así, pero sí se recomienda para brindarle escabilidad a la app*/
+    private IClienteService clienteService;
 
     @GetMapping(value = "/listar")
     public String listar(Model model){
         model.addAttribute("titulo", "Listado de clientes");
-        model.addAttribute("clientes", clienteDao.findAll());
-        model.addAttribute("size", clienteDao.findAll().size());
+        model.addAttribute("clientes", clienteService.findAll());
+        model.addAttribute("size", clienteService.findAll().size());
 
         return "listar";
     }
@@ -48,7 +46,7 @@ public class ClienteController {
         Cliente cliente = null;
 
         if(id>0){
-            cliente = clienteDao.findOne(id);
+            cliente = clienteService.findOne(id);
         } else {
             return "redirect:/listar";
         }
@@ -64,7 +62,7 @@ public class ClienteController {
             model.addAttribute("titulo", "Formulario de cliente");
             return "form";
         }
-        clienteDao.save(cliente);
+        clienteService.save(cliente);
         status.setComplete();
         return "redirect:listar";
     }
@@ -73,7 +71,7 @@ public class ClienteController {
     public String eliminar(@PathVariable(value = "id") Long id){
 
         if(id > 0){
-            clienteDao.delete(id);
+            clienteService.delete(id);
         }
 
         return "redirect:/listar";
