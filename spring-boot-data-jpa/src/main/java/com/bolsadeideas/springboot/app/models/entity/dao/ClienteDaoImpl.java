@@ -20,6 +20,15 @@ public class ClienteDaoImpl implements IClienteDao{
         return em.createQuery("FROM Cliente").getResultList();
     }
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public Cliente findOne(Long id) {
+        //Buscar con el EntityManager es fácil, y gracias a JPA, el objeto pasa a ser incluído en el contexto de persistencia
+        return em.find(Cliente.class, id);
+    }
+
+
     @Override
     @Transactional
     public void save(Cliente cliente) {
@@ -30,10 +39,10 @@ public class ClienteDaoImpl implements IClienteDao{
             em.persist(cliente);
         }
     }
-
     @Override
-    public Cliente findOne(Long id) {
-        //Buscar con el EntityManager es fácil, y gracias a JPA, el objeto pasa a ser incluído en el contexto de persistencia
-        return em.find(Cliente.class, id);
+    @Transactional
+    public void delete(Long id) {
+        Cliente cliente = findOne(id);
+        em.remove(cliente);
     }
 }
