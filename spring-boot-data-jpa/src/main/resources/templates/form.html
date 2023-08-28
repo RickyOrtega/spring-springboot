@@ -10,6 +10,11 @@
     <nav th:replace="fragments/fragments :: navBarFragment"></nav>
     <div class="container">
         <h1 th:text="${titulo}"></h1>
+        <div th:object="${cliente}" th:remove="tag">
+            <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+        </div>
         <form th:action="@{/form}" th:object="${cliente}" method="POST">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nombre</label>
