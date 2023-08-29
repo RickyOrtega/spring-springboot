@@ -1,14 +1,8 @@
 package com.bolsadeideas.springboot.app.models.entity.dao;
 
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
-
-public interface IClienteDao {
-    List<Cliente> findAll();
-    void save(Cliente cliente);
-
-    Cliente findOne(Long id);
-
-    void delete(Long id);
+public interface IClienteDao extends CrudRepository<Cliente, Long> {
+    
 }
