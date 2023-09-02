@@ -1,85 +1,90 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @NotEmpty
-    private String nombre;
-    @NotEmpty
-    private String apellido;
-    @NotEmpty
-    @Email
-    private String email;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    @Column(name = "created_at")
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createdAt;
+	@NotEmpty
+	private String nombre;
+	
+	@NotEmpty
+	private String apellido;
+	
+	@NotEmpty
+	@Email
+	private String email;
 
-    @Serial
-    private static final long serialVersionUID = 1L;
+	@NotNull
+	@Column(name = "create_at")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date createAt;
 
-    public Cliente() {
-    }
+	public Long getId() {
+		return id;
+	}
 
-/*    @PrePersist
-    public void prePersist(){
-        createdAt = new Date();
-    }*/
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getApellido() {
+		return apellido;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
-    public String getApellido() {
-        return apellido;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public Date getCreateAt() {
+		return createAt;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+	private static final long serialVersionUID = 1L;
+
 }
