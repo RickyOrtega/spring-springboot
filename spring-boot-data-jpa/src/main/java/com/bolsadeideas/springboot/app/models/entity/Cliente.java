@@ -37,12 +37,12 @@ public class Cliente implements Serializable {
 	private Date createAt;
 
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Factura> facturaList;
+	private List<Factura> facturas;
 
 	private String foto;
 
 	public Cliente() {
-		facturaList = new ArrayList<>();
+		facturas = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -99,15 +99,15 @@ public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public List<Factura> getFacturaList() {
-		return facturaList;
+	public List<Factura> getFacturas() {
+		return facturas;
 	}
 
-	public void setFacturaList(List<Factura> facturaList) {
-		this.facturaList = facturaList;
+	public void setFacturas(List<Factura> facturas) {
+		this.facturas = facturas;
 	}
 
 	public void addFactura(Factura factura){
-		facturaList.add(factura);
+		facturas.add(factura);
 	}
 }

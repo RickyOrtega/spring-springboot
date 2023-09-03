@@ -24,3 +24,13 @@ INSERT INTO clientes (nombre, apellido, email, create_at, foto) VALUES('John', '
 INSERT INTO clientes (nombre, apellido, email, create_at, foto) VALUES('Joe', 'Bloggs', 'joe.bloggs@gmail.com', '2017-08-23', '');
 INSERT INTO clientes (nombre, apellido, email, create_at, foto) VALUES('John', 'Stiles', 'john.stiles@gmail.com', '2017-08-24', '');
 INSERT INTO clientes (nombre, apellido, email, create_at, foto) VALUES('Richard', 'Roe', 'stiles.roe@gmail.com', '2017-08-25', '');
+
+/* Populate tabla productos */
+INSERT INTO productos (nombre, precio, created_at) VALUES('Panasonic Pantalla LCD', 259990, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('Sony Camara Digital DSC-W3208', 123490, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('HP Notebook Pavilion DV4-1272 LA', 799990, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('Apple iPod Shuffle 4G', 59990, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('Sony VAIO', 899990, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('ASUS TUF Gaming f15', 899990, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('ASUS ROG Strix G15', 899990, NOW());
+INSERT INTO productos (nombre, precio, created_at) VALUES('ASUS ROG Strix G17', 899990, NOW());
