@@ -34,3 +34,13 @@ INSERT INTO productos (nombre, precio, created_at) VALUES('Sony VAIO', 899990, N
 INSERT INTO productos (nombre, precio, created_at) VALUES('ASUS TUF Gaming f15', 899990, NOW());
 INSERT INTO productos (nombre, precio, created_at) VALUES('ASUS ROG Strix G15', 899990, NOW());
 INSERT INTO productos (nombre, precio, created_at) VALUES('ASUS ROG Strix G17', 899990, NOW());
+
+/* Populate tabla facturas */
+INSERT INTO facturas (descripcion, observacion, cliente_id, created_at) VALUES('Factura equipos de oficina', 'Observacion de prueba 1', 1, NOW());
+INSERT INTO items_factura (factura_id, producto_id, cantidad) VALUES(1, 1, 1);
+INSERT INTO items_factura (factura_id, producto_id, cantidad) VALUES(1, 2, 2);
+INSERT INTO items_factura (factura_id, producto_id, cantidad) VALUES(1, 3, 1);
+INSERT INTO items_factura (factura_id, producto_id, cantidad) VALUES(1, 4, 1);
+
+INSERT INTO facturas (descripcion, observacion, cliente_id, created_at) VALUES('Factura Bicicleta', 'Alguna nota importante', 2, NOW());
+INSERT INTO items_factura (factura_id, producto_id, cantidad) VALUES(2, 5, 1);
