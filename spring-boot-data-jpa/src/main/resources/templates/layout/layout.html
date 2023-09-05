@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:fragment="head">
 <meta charset="UTF-8" />
 <title th:text="'Spring Boot: MVC + Thymeleaf + Data JPA - ' + ${titulo}"></title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 </head>
 <body>
 	<header th:fragment="header">
@@ -41,15 +42,15 @@
 				Boot</a> y <a href="http://www.thymeleaf.org">Thymeleaf</a>.
 		</p>
 		<p>
-			Este proyecto fue desarrollado en IDE Eclipse + Spring Plugins (STS
-			Spring Tool), profesor Andrés Guzmán.<br /> &copy; Company 2017,
+			Este proyecto fue desarrollado en el IDE IntelliJ IDEA, Ricky Ortega.<br /> &copy; Company 2018,
 			Inc. Todos los derechos reservados. Términos de uso y privacidad.<br />
 		</p>
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Bootstrap JS -->
-		<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+		<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
 	</footer>
 </body>
 </html>
