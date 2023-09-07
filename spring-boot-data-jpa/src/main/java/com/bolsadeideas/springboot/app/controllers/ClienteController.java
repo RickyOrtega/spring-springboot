@@ -41,6 +41,11 @@ public class ClienteController {
 	@Autowired
 	private IUploadFileService uploadFileService;
 
+	@GetMapping(value = {"/", "/index", ""})
+	public String indexController(){
+		return "redirect:/listar";
+	}
+
 	@GetMapping(value = "/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
 
