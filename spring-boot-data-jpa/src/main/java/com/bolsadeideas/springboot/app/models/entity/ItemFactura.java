@@ -1,6 +1,6 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
