@@ -61,17 +61,6 @@ public class SpringSecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-/*                                    .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
-                .requestMatchers("/ver/**").hasAnyRole("USER")
-                .requestMatchers("/uploads/**").hasAnyRole("USER")
-                .requestMatchers("/form/**").hasAnyRole("ADMIN")
-                .requestMatchers("/eliminar/**").hasAnyRole("ADMIN")
-                .requestMatchers("/factura/**").hasAnyRole("ADMIN")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll()
-                .and()
-                .logout().permitAll();*/
 
         http.authorizeHttpRequests((authorize) -> { authorize
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
@@ -81,7 +70,10 @@ public class SpringSecurityConfig{
                 .requestMatchers("/eliminar/**").hasAnyRole("ADMIN")
                 .requestMatchers("/factura/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated();
-        }).formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
+        }).formLogin((login) -> { login
+                    .permitAll()
+                    .loginPage("/login");
+                })
         .logout(LogoutConfigurer::permitAll);
 
         return http.build();
