@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head"></head>
+<head th:replace="~{layout/layout :: head}"></head>
 <body>
-    <header th:replace="layout/layout :: header"></header>
+    <header th:replace="~{layout/layout :: header}"></header>
 
     <div class="container py-4">
 
@@ -19,11 +19,12 @@
                     <div class="form-group col-sm-6">
                         <input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar Sesión">
                     </div>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf. token}">
                 </form>
             </div>
         </div>
 
     </div>
-    <footer th:replace="layout/layout :: footer"></footer>
+    <footer th:replace="~{layout/layout :: footer}"></footer>
 </body>
 </html>

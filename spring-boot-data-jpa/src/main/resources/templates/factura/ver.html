@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:replace="layout/layout :: head"></title>
+    <title th:replace="~{layout/layout :: head}"></title>
 </head>
 <body>
-    <header th:replace="layout/layout :: header"></header>
+    <header th:replace="~{layout/layout :: header}"></header>
 
     <div class="container py-4">
         <div class="card bg-light">
@@ -61,6 +61,6 @@
             </div>
         </div>
     </div>
-    <footer th:replace="layout/layout :: footer"></footer>
+    <footer th:replace="~{layout/layout :: footer}"></footer>
 </body>
 </html>

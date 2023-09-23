@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig{
+public class SpringSecurityConfig {
 
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
@@ -41,7 +41,7 @@ public class SpringSecurityConfig{
     }*/
 
     @Autowired
-    public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception{
+    public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception {
         PasswordEncoder encoder = passwordEncoder();
 
         User.UserBuilder users = User.builder().passwordEncoder(encoder::encode);
@@ -62,19 +62,25 @@ public class SpringSecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 
-        http.authorizeHttpRequests((authorize) -> { authorize
-                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
-                .requestMatchers("/ver/**").hasAnyRole("USER")
-                .requestMatchers("/uploads/**").hasAnyRole("USER")
-                .requestMatchers("/form/**").hasAnyRole("ADMIN")
-                .requestMatchers("/eliminar/**").hasAnyRole("ADMIN")
-                .requestMatchers("/factura/**").hasAnyRole("ADMIN")
-                .anyRequest().authenticated();
-        }).formLogin((login) -> { login
-                    .permitAll()
-                    .loginPage("/login");
+        http.authorizeHttpRequests((authorize) -> {
+                    authorize
+                            .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
+                            .requestMatchers("/ver/**").hasAnyRole("USER")
+                            .requestMatchers("/uploads/**").hasAnyRole("USER")
+                            .requestMatchers("/form/**").hasAnyRole("ADMIN")
+                            .requestMatchers("/eliminar/**").hasAnyRole("ADMIN")
+                            .requestMatchers("/factura/**").hasAnyRole("ADMIN")
+                            .anyRequest().authenticated();
+                }).formLogin((login) -> {
+                    login
+                            .permitAll()
+                            .loginPage("/login");
                 })
-        .logout(LogoutConfigurer::permitAll);
+                .logout(LogoutConfigurer::permitAll);
+
+        http.exceptionHandling((exception) -> {
+            exception.accessDeniedPage("/error_403");
+        });
 
         return http.build();
     }
