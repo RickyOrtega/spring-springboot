@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.app;
 
+import com.bolsadeideas.springboot.app.auth.handler.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,26 +20,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SpringSecurityConfig {
 
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
+
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-/*    @Bean
-    public UserDetailsService userDetailsService() throws Exception {
-
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-
-        manager.createUser(User.withUsername("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER").build());
-
-        manager.createUser(User.withUsername("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN", "USER").build());
-
-        return manager;
-    }*/
 
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception {
@@ -74,7 +62,8 @@ public class SpringSecurityConfig {
                 }).formLogin((login) -> {
                     login
                             .permitAll()
-                            .loginPage("/login");
+                            .loginPage("/login")
+                            .successHandler(loginSuccessHandler);
                 })
                 .logout(LogoutConfigurer::permitAll);
 
