@@ -3,6 +3,7 @@ package com.bolsadeideas.springboot.app.controllers;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.security.Security;
+import java.util.Collection;
 import java.util.Map;
 
 import jakarta.validation.Valid;
@@ -17,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,6 +99,10 @@ public class ClienteController {
 		if(auth != null){
 			logger.info("Utilizando SecurityContextHolder.getContext().getAuthentication()): Username: ".concat(auth.getName()));
 		}
+
+		logger.info((hasRole("ROLE_ADMIN")) ?
+				"Hola, ".concat(auth.getName()).concat(" tienes acceso"):
+				"Hola, ".concat(auth.getName()).concat(" No tienes acceso"));
 
 		Pageable pageRequest = PageRequest.of(page, 4);
 
@@ -190,5 +197,30 @@ public class ClienteController {
 
 		}
 		return "redirect:/listar";
+	}
+
+	private boolean hasRole(String role){
+		SecurityContext context = SecurityContextHolder.getContext();
+
+		if (context == null){
+			return false;
+		}
+
+		Authentication auth = context.getAuthentication();
+
+		if(auth == null){
+			return false;
+		}
+
+		Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+
+		for(GrantedAuthority authority: authorities){
+			if(role.equals(authority.getAuthority())){
+				logger.info("Hola, ".concat(auth.getName()).concat(" tu rol es: ").concat(authority.getAuthority()));
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
