@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -22,14 +21,11 @@ public class SpringSecurityConfig {
     @Autowired
     private LoginSuccessHandler loginSuccessHandler;
 
-    @Bean
-    public static BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder builder) throws Exception {
-        PasswordEncoder encoder = passwordEncoder();
 
         User.UserBuilder users = User.builder().passwordEncoder(encoder::encode);
 
@@ -42,7 +38,6 @@ public class SpringSecurityConfig {
                         .username("ricky")
                         .password("12345")
                         .roles("USER"));
-
     }
 
     @Bean
