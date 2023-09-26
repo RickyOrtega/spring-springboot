@@ -5,17 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
@@ -53,11 +52,11 @@ public class SpringSecurityConfig {
         http.authorizeHttpRequests((authorize) -> {
                     authorize
                             .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
-                            .requestMatchers("/ver/**").hasAnyRole("USER")
+                            /*.requestMatchers("/ver/**").hasAnyRole("USER")
                             .requestMatchers("/uploads/**").hasAnyRole("USER")
                             .requestMatchers("/form/**").hasAnyRole("ADMIN")
                             .requestMatchers("/eliminar/**").hasAnyRole("ADMIN")
-                            .requestMatchers("/factura/**").hasAnyRole("ADMIN")
+                            .requestMatchers("/factura/**").hasAnyRole("ADMIN")*/
                             .anyRequest().authenticated();
                 }).formLogin((login) -> {
                     login
