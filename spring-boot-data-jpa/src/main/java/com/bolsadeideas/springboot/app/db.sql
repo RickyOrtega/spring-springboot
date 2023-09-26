@@ -20,7 +20,7 @@ CREATE TABLE authorities(
 );
 
 INSERT INTO users(username, password, enabled)
-VALUES ('andres', '$2a$10$zmDZtdE7rGb3OpmEc1pXwePaORIcxFXgPxaPBeNJnxXnXMPYeRwVy', 1);
+VALUES ('ricky', '$2a$10$zmDZtdE7rGb3OpmEc1pXwePaORIcxFXgPxaPBeNJnxXnXMPYeRwVy', 1);
 
 INSERT INTO users(username, password, enabled)
 VALUES ('admin', '$2a$10$rg6qSHD9KRaRxO.75aRfh.35JK/j1qW/ZUaCHJgaPiNy.NDlkv4hG', 1);
