@@ -59,24 +59,58 @@ public class FacturaXlsxView extends AbstractXlsxView {
 		sheet.createRow(6).createCell(0).setCellValue(mensajes.getMessage("text.cliente.factura.descripcion", locale).concat(": ").concat(factura.getDescripcion()));
 		sheet.createRow(7).createCell(0).setCellValue(mensajes.getMessage("text.cliente.factura.fecha", locale).concat(": ").concat(factura.getCreatedAt().toString()));
 
+		CellStyle theaderStyle = workbook.createCellStyle();
+		theaderStyle.setBorderBottom(BorderStyle.MEDIUM);
+		theaderStyle.setBorderTop(BorderStyle.MEDIUM);
+		theaderStyle.setBorderRight(BorderStyle.MEDIUM);
+		theaderStyle.setBorderLeft(BorderStyle.MEDIUM);
+		theaderStyle.setFillForegroundColor(IndexedColors.GOLD.index);
+		theaderStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+		CellStyle tbodyStyle = workbook.createCellStyle();
+		tbodyStyle.setBorderBottom(BorderStyle.MEDIUM);
+		tbodyStyle.setBorderTop(BorderStyle.MEDIUM);
+		tbodyStyle.setBorderRight(BorderStyle.MEDIUM);
+		tbodyStyle.setBorderLeft(BorderStyle.MEDIUM);
+
 		Row header = sheet.createRow(9);
 		header.createCell(0).setCellValue(mensajes.getMessage("text.factura.form.item.nombre", locale));
 		header.createCell(1).setCellValue(mensajes.getMessage("text.factura.form.item.precio", locale));
 		header.createCell(2).setCellValue(mensajes.getMessage("text.factura.form.item.cantidad", locale));
 		header.createCell(3).setCellValue(mensajes.getMessage("text.factura.form.item.total", locale));
 
+		header.getCell(0).setCellStyle(theaderStyle);
+		header.getCell(1).setCellStyle(theaderStyle);
+		header.getCell(2).setCellStyle(theaderStyle);
+		header.getCell(3).setCellStyle(theaderStyle);
+
 		int rownum = 10;
 
 		for(ItemFactura item: factura.getItems()){
 			Row fila = sheet.createRow(rownum++);
-			fila.createCell(0).setCellValue(item.getProducto().getNombre());
-			fila.createCell(1).setCellValue(item.getProducto().getPrecio());
-			fila.createCell(2).setCellValue(item.getCantidad());
-			fila.createCell(3).setCellValue(item.calcularImporte());
+
+			cell = fila.createCell(0);
+			cell.setCellValue(item.getProducto().getNombre());
+			cell.setCellStyle(tbodyStyle);
+
+			cell = fila.createCell(1);
+			cell.setCellValue(item.getProducto().getPrecio());
+			cell.setCellStyle(tbodyStyle);
+
+			cell = fila.createCell(2);
+			cell.setCellValue(item.getCantidad());
+			cell.setCellStyle(tbodyStyle);
+
+			cell = fila.createCell(3);
+			cell.setCellValue(item.calcularImporte());
+			cell.setCellStyle(tbodyStyle);
 		}
 
 		Row filatotal = sheet.createRow(rownum);
 		filatotal.createCell(2).setCellValue(mensajes.getMessage("text.factura.form.total", locale));
+		filatotal.getCell(2).setCellStyle(tbodyStyle);
+
 		filatotal.createCell(3).setCellValue(factura.getTotal());
+		filatotal.getCell(3).setCellStyle(tbodyStyle);
 	}
 }
