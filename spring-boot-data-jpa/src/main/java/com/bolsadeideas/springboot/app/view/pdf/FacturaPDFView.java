@@ -7,7 +7,6 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import jakarta.ejb.Local;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import java.awt.*;
 import java.util.Locale;
 import java.util.Map;
 
-@Component("factura/ver")
+@Component("factura/ver.pdf")
 public class FacturaPDFView extends AbstractPdfView {
 
 	@Autowired
