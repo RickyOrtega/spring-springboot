@@ -1,5 +1,6 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import javax.xml.bind.annotation.XmlTransient;
@@ -23,6 +24,7 @@ public class Factura implements Serializable {
     private Date createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Cliente cliente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
