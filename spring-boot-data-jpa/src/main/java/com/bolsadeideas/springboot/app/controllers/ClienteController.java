@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.app.controllers;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.Collection;
 import java.util.Locale;
@@ -240,13 +241,5 @@ public class ClienteController {
 
 		return authorities.contains(new SimpleGrantedAuthority(role));
 
-/*		for(GrantedAuthority authority: authorities){
-			if(role.equals(authority.getAuthority())){
-				logger.info("Hola, ".concat(auth.getName()).concat(" tu rol es: ").concat(authority.getAuthority()));
-				return true;
-			}
-		}
-
-		return false;*/
 	}
 }

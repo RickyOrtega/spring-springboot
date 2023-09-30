@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -30,6 +31,8 @@ public class Cliente implements Serializable {
 	@Email
 	private String email;
 
+	private static final long serialVersionUID = 1L;
+
 	@NotNull
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
@@ -37,9 +40,11 @@ public class Cliente implements Serializable {
 	private Date createAt;
 
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Factura> facturas;
 
 	private String foto;
+
 
 	public Cliente() {
 		facturas = new ArrayList<>();
@@ -92,13 +97,6 @@ public class Cliente implements Serializable {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	private static final long serialVersionUID = 1L;
-
 	public List<Factura> getFacturas() {
 		return facturas;
 	}

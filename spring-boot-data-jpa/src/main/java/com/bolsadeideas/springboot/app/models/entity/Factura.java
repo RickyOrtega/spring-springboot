@@ -1,6 +1,8 @@
 package com.bolsadeideas.springboot.app.models.entity;
 
 import jakarta.persistence.*;
+
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,6 +70,7 @@ public class Factura implements Serializable {
         this.createdAt = createdAt;
     }
 
+    @XmlTransient
     public Cliente getCliente() {
         return cliente;
     }

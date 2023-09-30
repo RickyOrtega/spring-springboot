@@ -10,16 +10,15 @@ import java.util.List;
 public class ClienteList {
 
 	@XmlElement(name = "cliente")
-	public List<Cliente> Clientes;
+	public List<Cliente> clientes;
+
+	public ClienteList() {}
 
 	public ClienteList(List<Cliente> clientes){
-
-	}
-
-	public ClienteList() {
+		this.clientes = clientes;
 	}
 
 	public List<Cliente> getClientes() {
-		return Clientes;
+		return clientes;
 	}
 }
