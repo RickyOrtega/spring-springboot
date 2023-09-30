@@ -7,13 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.AbstractView;
 import org.supercsv.io.CsvBeanWriter;
-import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import java.util.Map;
 
-@Component("listar")
+@Component("listar.csv")
 public class ClienteCsvView extends AbstractView {
 
 	public ClienteCsvView() {
