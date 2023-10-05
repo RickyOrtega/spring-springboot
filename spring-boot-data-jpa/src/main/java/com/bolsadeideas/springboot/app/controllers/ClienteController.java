@@ -1,7 +1,6 @@
 package com.bolsadeideas.springboot.app.controllers;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.Collection;
 import java.util.List;
@@ -71,7 +70,6 @@ public class ClienteController {
 		try {
 			recurso = uploadFileService.load(filename);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
